@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>BiblioLivre</title></head>
+<body>
+    <h1>Liste des livres</h1>
+    <ul>
+        {% for livre in livres %}
+            <li>{{ livre.name }} — {{ livre.author }} ({{ livre.year }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
