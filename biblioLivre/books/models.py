@@ -5,7 +5,7 @@ class Livre(models.Model):
     author = models.CharField(max_length=100)
     year = models.IntegerField()
 
-    def str(self):
+    def __str__(self):
         return self.name
 
 
@@ -18,5 +18,5 @@ class Avis(models.Model):
     class Meta:
         ordering = ['rating']
 
-    def str(self):
-        return (self.title + ' : ' + str(self.rating) + ' étoiles')
+    def __str__(self):
+        return (self.commentaire + ' : ' + str(self.rating) + ' étoiles')
