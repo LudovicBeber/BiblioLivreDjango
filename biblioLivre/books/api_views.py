@@ -3,7 +3,8 @@ from .models import Livre, Avis
 from .serializers import LivreSerializer, AvisSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .permissions import IsAuthenticatedOrOwnerOrAdmin, IsAuthenticated
+from .permissions import IsAuthenticatedOrOwnerOrAdmin
+from rest_framework.permissions import IsAuthenticated
 
 class AvisViewSet(viewsets.ModelViewSet):
     queryset = Avis.objects.all()
