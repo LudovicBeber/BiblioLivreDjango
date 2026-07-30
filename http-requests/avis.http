@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:8000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg1MzM5OTg2LCJpYXQiOjE3ODUzMzk2ODYsImp0aSI6IjNjODRkOTFhNTZlZjRlMjc4NWYxNjFiZjZmMzY4NTk2IiwidXNlcl9pZCI6IjIifQ.WYf62GWwJPPqH0QsJgCv8wbxYmf0Eb_yNc-BIM1Ir6s
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg1Mzk2Njk0LCJpYXQiOjE3ODUzOTYzOTQsImp0aSI6ImZhMzdkZjkzMjZmNzQ0ODU5M2EzZTcwOWFjNDFlNzhjIiwidXNlcl9pZCI6IjIifQ.GKSb5vaf948f5XHZF8Folu788tZg9Mc0LfUhtcrg_Uw
 @refresh = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4NTQyNDI5MywiaWF0IjoxNzg1MzM3ODkzLCJqdGkiOiJmNjcyZmJmOTI2MTI0YzUzYmIyYzcwMDEzZDE3NzBhMSIsInVzZXJfaWQiOiIxIn0.1kVfzilSXxawthUsHBYebvU6SjSqw-JEudtLWj7UIig
 
 POST {{baseUrl}}/api/token/
@@ -19,6 +19,51 @@ Authorization: Bearer {{token}}
 {
     "user": 2,
     "commentaire": "Commentaire de test",
-    "rating": ,
+    "rating": 5,
     "livre": 1
 }
+
+
+###
+GET {{baseUrl}}/api/avis/
+###
+# test update non connecté
+
+PUT {{baseUrl}}/api/avis/1/
+Content-Type: application/json
+
+{
+    "user":2,
+    "commentaire": "Commentaire de test updaté",
+    "rating": 5,
+    "livre": 1
+
+}
+
+###
+# test update connecté
+
+PUT {{baseUrl}}/api/avis/1/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "user":2,
+    "commentaire": "Commentaire de test updaté",
+    "rating": 5,
+    "livre": 1
+}
+
+###
+
+PATCH {{baseUrl}}/api/avis/1/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "rating": 4
+}
+###
+
+DELETE {{baseUrl}}/api/avis/1/
+Authorization: Bearer {{token}}
