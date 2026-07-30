@@ -1,0 +1,21 @@
+@baseUrl = http://localhost:8000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg1MzM5NDE5LCJpYXQiOjE3ODUzMzkxMTksImp0aSI6IjY3MDZhZjQ0YTA3YzRlM2ViMmRhNWQ3NmE0OWRmZmNjIiwidXNlcl9pZCI6IjIifQ.0jYUl7qEB6UGAIMVHJOmgCiEGS07mKav1Cy7QEi_6sI
+@refresh = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4NTQyNDI5MywiaWF0IjoxNzg1MzM3ODkzLCJqdGkiOiJmNjcyZmJmOTI2MTI0YzUzYmIyYzcwMDEzZDE3NzBhMSIsInVzZXJfaWQiOiIxIn0.1kVfzilSXxawthUsHBYebvU6SjSqw-JEudtLWj7UIig
+
+POST {{baseUrl}}/api/token/
+Content-Type: application/json
+
+{
+    "username": "alice",
+    "password": "motdepasse-demo"
+}
+###
+POST {{baseUrl}}/api/livres/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Harry Potter",
+    "author": "Killian",
+    "year": 2028
+}

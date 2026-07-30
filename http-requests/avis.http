@@ -1,0 +1,24 @@
+@baseUrl = http://localhost:8000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg1MzM5OTg2LCJpYXQiOjE3ODUzMzk2ODYsImp0aSI6IjNjODRkOTFhNTZlZjRlMjc4NWYxNjFiZjZmMzY4NTk2IiwidXNlcl9pZCI6IjIifQ.WYf62GWwJPPqH0QsJgCv8wbxYmf0Eb_yNc-BIM1Ir6s
+@refresh = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4NTQyNDI5MywiaWF0IjoxNzg1MzM3ODkzLCJqdGkiOiJmNjcyZmJmOTI2MTI0YzUzYmIyYzcwMDEzZDE3NzBhMSIsInVzZXJfaWQiOiIxIn0.1kVfzilSXxawthUsHBYebvU6SjSqw-JEudtLWj7UIig
+
+POST {{baseUrl}}/api/token/
+Content-Type: application/json
+
+{
+    "username": "alice",
+    "password": "motdepasse-demo"
+}
+
+###
+
+POST {{baseUrl}}/api/avis/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "user": 2,
+    "commentaire": "Commentaire de test",
+    "rating": ,
+    "livre": 1
+}
