@@ -7,9 +7,10 @@ class LivreSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'author', 'year']
 
 class AvisSerializer(serializers.ModelSerializer):
+    likes = serializers.IntegerField(source='like.count', read_only=True)
     class Meta:
         model = Avis
-        fields = ['id', 'commentaire', 'rating', 'user', 'livre']
+        fields = ['id', 'commentaire', 'rating', 'user', 'livre', 'likes']
 
     def validate_rating(self, value):
         if value < 1 or value > 5:
