@@ -3,10 +3,15 @@ from .models import Livre, Avis
 from .serializers import LivreSerializer, AvisSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from .permissions import IsAuthenticatedOrOwnerOrAdmin
 
 class AvisViewSet(viewsets.ModelViewSet):
     queryset = Avis.objects.all()
     serializer_class = AvisSerializer
+    permission_classes = [IsAuthenticatedOrOwnerOrAdmin]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
     @action(detail=True, methods=['post'])
     def like(self, request, pk=None):
@@ -24,3 +29,7 @@ class AvisViewSet(viewsets.ModelViewSet):
 class LivreViewSet(viewsets.ModelViewSet):
     queryset = Livre.objects.all()
     serializer_class = LivreSerializer
+    permission_classes = [IsAuthenticatedOrOwnerOrAdmin]  
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

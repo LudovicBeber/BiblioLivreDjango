@@ -2,11 +2,23 @@
 <html>
 <head><title>BiblioLivre</title></head>
 <body>
-    <h1>Liste des livres</h1>
-    <ul>
-        {% for livre in livres %}
-            <li>{{ livre.name }} — {{ livre.author }} ({{ livre.year }})</li>
-        {% endfor %}
-    </ul>
+    <div style="display: flex; gap: 40px;">
+        <div style="flex: 1;">
+            <h1>Liste des livres</h1>
+            <ul>
+                {% for livre in livres %}
+                    <li>{{ livre.name }} — {{ livre.author }} ({{ livre.year }}) — publié par {{ livre.user.username }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="flex: 1;">
+            <h1>Avis</h1>
+            <ul>
+                {% for avi in avis %}
+                    <li>{{ avi.livre.name }} — {{ avi.rating }} étoiles — par {{ avi.user.username }} : "{{ avi.commentaire }}"</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
