@@ -1,6 +1,6 @@
 ### Scénario de test pour les permissions sur les avis en étant pas le créateur de l'avis
 @baseUrl = http://localhost:8000
-@tokencreator = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg1Mzk2Njk0LCJpYXQiOjE3ODUzOTYzOTQsImp0aSI6ImZhMzdkZjkzMjZmNzQ0ODU5M2EzZTcwOWFjNDFlNzhjIiwidXNlcl9pZCI6IjIifQ.GKSb5vaf948f5XHZF8Folu788tZg9Mc0LfUhtcrg_Uw
+@tokencreator = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg1NDAyNjcyLCJpYXQiOjE3ODU0MDIzNzIsImp0aSI6IjhjZmVmN2U3MTg5ZjQwZTVhODk5YjY3NTg2OTRhY2U0IiwidXNlcl9pZCI6IjIifQ.7SRiHYU97JHnMNICpIdWm74w_jGMPTxcALUv73utzC4
 @refreshcreator = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4NTQyNDI5MywiaWF0IjoxNzg1MzM3ODkzLCJqdGkiOiJmNjcyZmJmOTI2MTI0YzUzYmIyYzcwMDEzZDE3NzBhMSIsInVzZXJfaWQiOiIxIn0.1kVfzilSXxawthUsHBYebvU6SjSqw-JEudtLWj7UIig
 
 ### setup création de l'avis par le créateur
@@ -11,6 +11,8 @@ Content-Type: application/json
     "username": "alice",
     "password": "motdepasse-demo"
 }
+
+###
 
 POST {{baseUrl}}/api/avis/
 Content-Type: application/json
@@ -23,3 +25,53 @@ Authorization: Bearer {{tokencreator}}
     "livre": 1
 }
 
+### like un avis en étant le créateur de l'avis
+POST {{baseUrl}}/api/avis/1/like/
+Content-Type: application/json
+Authorization: Bearer {{tokencreator}}
+
+###
+@tokentestor = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg1NDAyNDAxLCJpYXQiOjE3ODU0MDIxMDEsImp0aSI6IjhhYmMyYmI4MjRmYTRiNjJhYmQzZTVjMzg3NmJlZDQ3IiwidXNlcl9pZCI6IjMifQ.qowUmx7VjrhJySvFoY_L-3jXx--0sYU6SJEePXc9c4U
+
+POST {{baseUrl}}/api/token/
+Content-Type: application/json
+
+{
+    "username": "chapeau",
+    "password": "demo-motdepasse"
+}
+###
+
+PUT {{baseUrl}}/api/avis/1/
+Content-Type: application/json
+Authorization: Bearer {{tokentestor}}
+
+{
+    "user": 2,
+    "commentaire": "Commentaire de test updaté",
+    "rating": 5,
+    "livre": 1
+}
+
+###
+
+DELETE {{baseUrl}}/api/avis/1/
+Content-Type: application/json
+Authorization: Bearer {{tokentestor}}
+
+###
+
+PATCH {{baseUrl}}/api/avis/1/
+Content-Type: application/json
+Authorization: Bearer {{tokentestor}}
+
+{
+    "commentaire": "Commentaire de test updaté"
+}
+
+
+
+### like un avis en étant pas le créateur de l'avis
+POST {{baseUrl}}/api/avis/1/like/
+Content-Type: application/json
+Authorization: Bearer {{tokentestor}}
