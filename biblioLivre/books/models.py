@@ -4,6 +4,7 @@ class Livre(models.Model):
     name = models.CharField(max_length=100, unique=True)
     author = models.CharField(max_length=100)
     year = models.IntegerField()
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

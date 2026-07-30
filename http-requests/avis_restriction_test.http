@@ -1,0 +1,25 @@
+### Scénario de test pour les permissions sur les avis en étant pas le créateur de l'avis
+@baseUrl = http://localhost:8000
+@tokencreator = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg1Mzk2Njk0LCJpYXQiOjE3ODUzOTYzOTQsImp0aSI6ImZhMzdkZjkzMjZmNzQ0ODU5M2EzZTcwOWFjNDFlNzhjIiwidXNlcl9pZCI6IjIifQ.GKSb5vaf948f5XHZF8Folu788tZg9Mc0LfUhtcrg_Uw
+@refreshcreator = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4NTQyNDI5MywiaWF0IjoxNzg1MzM3ODkzLCJqdGkiOiJmNjcyZmJmOTI2MTI0YzUzYmIyYzcwMDEzZDE3NzBhMSIsInVzZXJfaWQiOiIxIn0.1kVfzilSXxawthUsHBYebvU6SjSqw-JEudtLWj7UIig
+
+### setup création de l'avis par le créateur
+POST {{baseUrl}}/api/token/
+Content-Type: application/json
+
+{
+    "username": "alice",
+    "password": "motdepasse-demo"
+}
+
+POST {{baseUrl}}/api/avis/
+Content-Type: application/json
+Authorization: Bearer {{tokencreator}}
+
+{
+    "user": 2,
+    "commentaire": "Commentaire de test",
+    "rating": 5,
+    "livre": 1
+}
+
