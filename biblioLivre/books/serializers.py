@@ -11,6 +11,7 @@ class AvisSerializer(serializers.ModelSerializer):
     class Meta:
         model = Avis
         fields = ['id', 'commentaire', 'rating', 'user', 'livre', 'likes']
+        read_only_fields = ['user']
 
     def validate_rating(self, value):
         if value < 0 or value > 5:
